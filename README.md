@@ -1,3 +1,5 @@
+**NOTE:** _This fork surfaces subsequent [onMetaData](http://help.adobe.com/en_US/AS2LCR/Flash_10.0/help.html?content=00001405.html) events from Flash to the custom Javascript metadataupdated event. Abacast uses the onMetaData event to surface synced banner ads from their Flash video stream. So after the initial onMetaData event we want to continue surfacing them to JavaScript so that synced banner ads can be displayed when appropriate._
+
 ## Please Note!
 The master branch is now the development branch for 5.0 and should be considered unstable until the first 5.0 release. If you're looking for the most recent stable release, please refer to the [stable branch](https://github.com/videojs/video.js/tree/stable).
 
