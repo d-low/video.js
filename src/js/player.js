@@ -318,6 +318,7 @@ class Player extends Component {
     this.on(this.tech, 'emptied', this.handleTechEmptied);
     this.on(this.tech, 'stalled', this.handleTechStalled);
     this.on(this.tech, 'loadedmetadata', this.handleTechLoadedMetaData);
+    this.on(this.tech, 'metadataupdate', this.handleMetaDataUpdate);
     this.on(this.tech, 'loadeddata', this.handleTechLoadedData);
     this.on(this.tech, 'timeupdate', this.handleTechTimeUpdate);
     this.on(this.tech, 'ratechange', this.handleTechRateChange);
@@ -735,6 +736,17 @@ class Player extends Component {
    */
   handleTechLoadedMetaData() {
     this.trigger('loadedmetadata');
+  }
+
+  /**
+   * Fires when the swf issues a metadataupdate event, an event specific to our
+   * Abacast stream that uses Flash's onMetaData event to surface synced banner
+   * ads to listeners.
+   * @event metadataupdate
+   * @todo How to we pass the metadata object from Flash to JavaScript?
+   */
+  handleMetaDataUpdate() {
+    this.trigger('metadataupdate');
   }
 
   /**
