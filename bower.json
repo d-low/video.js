@@ -3,12 +3,12 @@
   "description": "An HTML5 and Flash video player with a common API and skin for both.",
   "version": "5.0.0-11",
   "main": [
-    "dist/video-js/video.js",
-    "dist/video-js/video-js.css",
-    "dist/video-js/font/vjs.eot",
-    "dist/video-js/font/vjs.svg",
-    "dist/video-js/font/vjs.ttf",
-    "dist/video-js/font/vjs.woff"
+    "dist/video.js",
+    "dist/video-js.css",
+    "dist/font/vjs.eot",
+    "dist/font/vjs.svg",
+    "dist/font/vjs.ttf",
+    "dist/font/vjs.woff"
   ],
   "keywords": [
     "videojs",
