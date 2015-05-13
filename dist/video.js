@@ -7830,10 +7830,11 @@ var Player = (function (_Component) {
      * Abacast stream that uses Flash's onMetaData event to surface synced banner
      * ads to listeners.
      * @event metadataupdate
-     * @todo How to we pass the metadata object from Flash to JavaScript?
+     * @param e event object to be triggered for external listeners, retriggering
+     * it here ensures the original event object makes it to any listeners.
      */
-    value: function handleMetaDataUpdate() {
-      this.trigger('metadataupdate');
+    value: function handleMetaDataUpdate(e) {
+      this.trigger(e);
     }
   }, {
     key: 'handleTechLoadedData',
@@ -10456,7 +10457,22 @@ Flash.checkReady = function (tech) {
 // Trigger events from the swf on the player
 Flash.onEvent = function (swfID, eventName) {
   var tech = Lib.el(swfID).tech;
-  tech.trigger(eventName);
+
+  // Special case for our metadataupdate event which is surfaced from our
+  // version of the Video JS SWF.  We need to surface the arguments from the
+  // Flash event to listeners on the client side.
+
+  if (eventName === 'metadataupdate') {
+    var mesg = '';
+
+    if (arguments && arguments.length > 2 && arguments[2].length) {
+      mesg = arguments[2][0];
+    }
+
+    tech.trigger({ type: eventName, data: mesg });
+  } else {
+    tech.trigger(eventName);
+  }
 };
 
 // Log errors from the swf
