@@ -743,10 +743,11 @@ class Player extends Component {
    * Abacast stream that uses Flash's onMetaData event to surface synced banner
    * ads to listeners.
    * @event metadataupdate
-   * @todo How to we pass the metadata object from Flash to JavaScript?
+   * @param e event object to be triggered for external listeners, retriggering
+   * it here ensures the original event object makes it to any listeners.
    */
-  handleMetaDataUpdate() {
-    this.trigger('metadataupdate');
+  handleMetaDataUpdate(e) {
+    this.trigger(e);
   }
 
   /**

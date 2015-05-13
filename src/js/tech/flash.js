@@ -310,7 +310,7 @@ Flash.onEvent = function(swfID, eventName){
       mesg = arguments[2][0];
     }
 
-    tech.trigger(eventName, mesg);
+    tech.trigger({type: eventName, data: mesg});
   }
   else {
     tech.trigger(eventName);
